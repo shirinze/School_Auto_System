@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using School.Model.Context;
 
 namespace School.Model.Migrations
 {
     [DbContext(typeof(SchoolAutoContext))]
-    partial class SchoolAutoContextModelSnapshot : ModelSnapshot
+    [Migration("20240512132557_create_Student_Table")]
+    partial class create_Student_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

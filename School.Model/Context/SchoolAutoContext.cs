@@ -19,12 +19,13 @@ namespace School.Model.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new LessonMap()); // LessonMap sınıfı içindeki değişiklikler tablo oluşturulurken dikkate alınıyor
-
+            modelBuilder.ApplyConfiguration(new StudentMap());
 
             base.OnModelCreating(modelBuilder);//coremap sinifi icin calisacak
         }
 
         public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Student> Students { get; set; }
 
 
     }
