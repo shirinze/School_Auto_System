@@ -1,0 +1,23 @@
+﻿@model Lesson
+@{
+    ViewData["Title"] = "Guncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kayit Guncelle</h1>
+@if(ViewBag.LessonUpdateError!=null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.LessonUpdateError
+    </div>
+}
+else
+{
+    <form asp-controller="Lesson" asp-action="Guncelle" method="post">
+        <input type="hidden" name="ID" value="@Model.ID" /><br />
+        <input type="text" name="LessonName" value="@Model.LessonName" /><br />
+        <input type="submit" value="kaydet" class="btn btn-outline-success" />
+    </form>
+}
+
+
