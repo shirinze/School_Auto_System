@@ -29,13 +29,24 @@ namespace School_WebUI.Controllers
             ViewBag.StudentAddError = "isim soy isim ve cinsiyet bos gecilemez!!!!!!!!";
             return View();
         }
-        public IActionResult Guncelle()
+        public IActionResult Guncelle(int id)
         {
+            return View(_st.GetById(id));
+        }
+
+        [HttpPost]
+        public IActionResult Guncelle(Student s)
+        {
+            if(s.Name!=null && s.SureName!=null && s.Gender!=null)
+            {
+                return _st.Update(s) ? View("Listele", _st.GetAll()) : View();
+            }
+            ViewBag.StudentUpdateError = "isim soy isim ve cinsiyet bos gecilemez!!!!!!!!!!";
             return View();
         }
-        public IActionResult Sil()
+        public IActionResult Sil(int id)
         {
-            return View();
+            return _st.Delete(id)?View("Listele",_st.GetAll()):View();
         }
     }
 }

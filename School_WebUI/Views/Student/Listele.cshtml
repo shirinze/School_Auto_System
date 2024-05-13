@@ -30,6 +30,8 @@ else
                     <td>@item.Name</td>
                     <td>@item.SureName</td>
                     <td>@item.Gender</td>
+                    <td><a asp-controller="Student" asp-action="Guncelle" asp-route-id="@item.ID" class="btn btn-success">Guncelle</a></td>
+                    <td><a asp-controller="Student" asp-action="Sil" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></td>
                 </tr>
 
             }
@@ -37,6 +39,10 @@ else
 
         </tbody>
     </table>
+
+   
 }
+
+<a asp-controller="Student" asp-action="Ekle" class="btn btn-outline-success">yeni ogrenci</a>
 
 
