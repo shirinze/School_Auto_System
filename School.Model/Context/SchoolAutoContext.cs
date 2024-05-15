@@ -21,6 +21,7 @@ namespace School.Model.Context
             modelBuilder.ApplyConfiguration(new LessonMap()); // LessonMap sınıfı içindeki değişiklikler tablo oluşturulurken dikkate alınıyor
             modelBuilder.ApplyConfiguration(new StudentMap());
             modelBuilder.ApplyConfiguration(new TeacherMap());
+            modelBuilder.ApplyConfiguration(new NoteMap());
 
             base.OnModelCreating(modelBuilder);//coremap sinifi icin calisacak
         }
@@ -28,6 +29,7 @@ namespace School.Model.Context
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Note> Notes { get; set; }
 
 
     }
