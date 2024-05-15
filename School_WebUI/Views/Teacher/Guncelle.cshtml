@@ -1,0 +1,26 @@
+﻿@model Teacher
+@{
+    ViewData["Title"] = "Guncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Guncelle</h1>
+@if (ViewBag.TeacherUpdateError!=null)
+{
+
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.TeacherUpdateError
+    </div>
+}
+else
+{
+    <form asp-controller="Teacher" asp-action="Guncelle" method="post">
+        <input type="hidden" name="ID" value="@Model.ID" /><br /><br />
+        <input type="text" name="TeacherName" value="@Model.TeacherName" /><br /><br />
+        <input type="text" name="TeacherSurName" value="@Model.TeacherSurname" /><br /><br />
+        <input type="number" name="LessonID" value="@Model.LessonID" /><br /><br />
+        <input type="submit" value="kaydet" />
+    </form>
+}
+
+
