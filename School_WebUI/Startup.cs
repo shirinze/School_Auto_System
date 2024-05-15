@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,7 @@ namespace School_WebUI
             //dependency injection amaci baglantilari minimum seviye indirmek
             //icoreservice ile baseservice iliskilendirdik
             services.AddScoped(typeof(ICoreService<>), typeof(BaseService<>));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => options.LoginPath = "/Account/Login"); //login icin 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,14 +55,19 @@ namespace School_WebUI
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();// Login yöntemini kullanacaðýz dedik
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(name: "Areas",
+                    areaName: "User",
+                    pattern: "User/{Controller=Home}/{Action=Index}/{id?}"
+                    );
                 
                 endpoints.MapControllerRoute(name: "default",
-                    pattern: "{Controller=Home}/{Action=Index}/{id?}");
+                    pattern: "{Controller=Home}/{Action=Index}/{id?}"
+                    );
             });
         }
     }

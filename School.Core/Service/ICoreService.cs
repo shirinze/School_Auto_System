@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,9 +17,11 @@ namespace School.Core.Service
         bool Delete(int id);
         bool Update(T item);
         T GetById(int id);
+        T GetRecord(Expression<Func<T, bool>> expression);//lambda expression
         List<T> GetAll();
         int Save(); 
         
 
     }
+    
 }

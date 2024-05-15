@@ -4,6 +4,7 @@ using School.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,7 +53,11 @@ namespace School.Service.Base
 
 
         public T GetById(int id) => _db.Set<T>().Find(id);
-        
+
+        public T GetRecord(Expression<Func<T, bool>> expression)
+        {
+            return _db.Set<T>().FirstOrDefault(expression);
+        }
 
         public int Save() => _db.SaveChanges();
 
