@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+@model LoginViewModel
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -38,17 +39,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="login">
 				<h3 class="inner-tittle t-inner">Login</h3>
 				
-				<form>
-					<input type="text" class="text" value="E-mail address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}">
-					<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+				<form asp-controller="Account" asp-action="Login" method="post">
+					<input type="text" class="text" name="name" value="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}">
+					<input type="text" name="surename" value="surename" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"><br /><br />
+					<select class="form-select" aria-label="Default select example" name="LoginType">
+						<option selected>Giriş Yapan Kullanıcı Ünvanı Seçiniz</option>
+						<option value="1">Öğretmen</option>
+						<option value="2">Öğrenci</option>
+						
+					</select><br /><br />
 					<div class="submit"><input type="submit" onclick="myFunction()" value="Login"></div>
 					<div class="clearfix"></div>
-
-					<div class="new">
-						<p><label class="checkbox11"><input type="checkbox" name="checkbox"><i> </i>Forgot Password ?</label></p>
-						<p class="sign">Do not have an account ? <a href="sign.html">Sign Up</a></p>
-						<div class="clearfix"></div>
-					</div>
 				</form>
 			</div>
 
