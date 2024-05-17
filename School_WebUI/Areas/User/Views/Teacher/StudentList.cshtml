@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Student>
+@{
+    ViewData["Title"] = "StudentList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>OGRENCI LISTESI</h1>
+
+@if(Model.Count()==0)
+{
+    <div class="alert alert-danger" role="alert">
+        Kayıt Bulunamadı..!
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ogrenci Ad/Soyad</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.ID</th>
+                    <td>@item.Name &nbsp; @item.SureName</td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+
+
+
