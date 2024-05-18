@@ -101,6 +101,17 @@ namespace School_WebUI.Areas.User.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public IActionResult NoteEdit(StudentNoteDto snd)
+        {
+            var kayit = _notedb.GetRecord(x => x.StudentId == snd.studentid && x.LessonId == snd.lessonid);
+            if (kayit != null)
+            {
+                kayit.Score = snd.score;
+                return _notedb.Update(kayit) ? View("StudentList", _studentdb.GetAll()) : View();
+            }
+            return View();
+        }
 
 
 

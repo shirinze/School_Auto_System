@@ -48,6 +48,27 @@ namespace School_WebUI.Controllers
                     return RedirectToAction("Index", "Teacher", new { area = "User" });
                 }
             }
+            else if(lvm.LoginType==2)
+            {
+                var result = _stu.GetRecord(x => x.Name == lvm.name && x.SureName == lvm.surename);
+                if (result != null)
+                {
+                    {
+                        var claims = new List<Claim>()
+                        {
+                            new Claim("ID",result.ID.ToString()),
+                            new Claim("LoginType",lvm.LoginType.ToString()),
+                            new Claim(ClaimTypes.Name,result.Name),
+                            new Claim(ClaimTypes.Surname,result.SureName)
+                        };
+
+                        var user = new ClaimsIdentity(claims, "Login");
+                        ClaimsPrincipal principal = new ClaimsPrincipal(user);
+                        await HttpContext.SignInAsync(principal);
+                        return RedirectToAction("Index", "Student", new { area = "User" });
+                    }
+                }
+            }
 
 
             return View();
