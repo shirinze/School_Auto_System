@@ -29,6 +29,8 @@ else
                 <tr>
                     <th scope="row">@item.ID</th>
                     <td>@item.Name &nbsp; @item.SureName</td>
+                    <td><a asp-area="User" asp-controller="Teacher" asp-action="NoteAdd" asp-route-id="@item.ID" class="btn btn-success">Not Ekle</a></td>
+                    <td><a asp-area="User" asp-controller="Teacher" asp-action="NoteEdite" asp-route-id="@item.ID" class="btn btn-danger">Not Duzenle</a></td>
 
                 </tr>
             }

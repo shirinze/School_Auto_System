@@ -1,0 +1,31 @@
+﻿@model School_WebUI.Areas.User.Models.Dtos.StudentNoteDto
+@{
+    ViewData["Title"] = "NoteEdite";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>NoteEdite</h1>
+
+<form asp-area="User" asp-controller="Teacher" asp-action="NoteEdite" method="post">
+    <input type="hidden" name="studentid" value="@Model.studentid" />
+    <input type="hidden" name="lessonid" value="@Model.lessonid" />
+    <input type="text" name="name" value="@Model.name" readonly /><br /><br />
+    <input type="text" name="surename" value="@Model.surename" readonly /><br /><br />
+    <input type="number" name="score" value="@Model.score" /><br /><br />
+    <select class="form-select" aria-label="Default select example" name="lessons" itemid="@Model.lessonid" disabled>
+        <option selected>Ders Seçiniz</option>
+        @foreach (var item in Model.Lessons)
+        {
+            if(Model.lessonid==item.ID)
+            {
+                <option value="@item.ID" selected>@item.LessonName</option>
+            }
+            
+
+        }
+        
+        
+    </select>
+    <input type="submit" value="guncelle" />
+</form>
+

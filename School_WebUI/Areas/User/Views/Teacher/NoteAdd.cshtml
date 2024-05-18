@@ -1,0 +1,22 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "NoteAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>NoteAdd</h1>
+
+<form asp-area="User" asp-controller="Teacher" asp-action="NoteAdd" method="post">
+    <input type="hidden" name="ID" value="@Model.ID" />
+    <input type="text" name="Name" value="@Model.Name" readonly /><br />
+    <input type="text" name="SureName" value="@Model.SureName" readonly /><br />
+    <input type="number" name="score" placeholder="not giriniz" /><br />
+    <select class="form-select" aria-label="Default select example" name="ders">
+        <option selected>Ders Seçiniz</option>
+        <option value="1">Matematik</option>
+        <option value="2">Türkçe</option>
+    </select>
+    <input type="submit" value="kaydet" class="btn btn-success" />
+</form>
+
