@@ -58,25 +58,31 @@ namespace School_WebUI.Areas.User.Controllers
         [HttpPost]
         public IActionResult NoteAdd(Student s,int score,int ders)
         {
-            //ilk once boyle bir kayit var mi diye bakacagiz onun icin note ait eklemeler yapilacak
-            var kayit = _notedb.GetRecord(x => x.StudentId == s.ID && x.LessonId == ders);
-            if(kayit==null)
+            var teacherid = int.Parse(User.Claims.FirstOrDefault(x => x.Type.EndsWith("ID")).Value);
+            var teacherlessonid = _teacherdb.GetById(teacherid).LessonID;
+            if(teacherlessonid==ders)
             {
-                //note sinifina ait nesne 
-                var record = new Note()
+                //ilk once boyle bir kayit var mi diye bakacagiz onun icin note ait eklemeler yapilacak
+                var kayit = _notedb.GetRecord(x => x.StudentId == s.ID && x.LessonId == ders);
+                if (kayit == null)
                 {
-                    Score = score,
-                    StudentId=s.ID,
-                    LessonId=ders
-                };
-                return _notedb.Add(record) ? View("StudentList", _studentdb.GetAll()) : View();
+                    //note sinifina ait nesne 
+                    var record = new Note()
+                    {
+                        Score = score,
+                        StudentId = s.ID,
+                        LessonId = ders
+                    };
+                    return _notedb.Add(record) ? View("StudentList", _studentdb.GetAll()) : View();
+
+                }
+                return View("StudentList", _studentdb.GetAll());
 
             }
-            return View("StudentList", _studentdb.GetAll());
+
+            return View();
 
 
-
-            
         }
 
         public IActionResult NoteEdite(int id)
